@@ -1,0 +1,1705 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seguridad GPS Anti-Robo para Flotas de Carga en México | Logitrack</title>
+  <meta name="description" content="Protege tu flota con el sistema anti-robo más avanzado de México. Tecnología anti-jammer, bloqueo automático con IA, cobertura 150+ países. 99% de efectividad. Solicita tu demo gratis." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- JSON-LD Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "Logitrack",
+        "url": "https://www.logitrack.mx",
+        "logo": "https://www.logitrack.mx/logo.png",
+        "description": "Logitrack es una empresa mexicana especializada en sistemas de seguridad GPS y anti-robo para flotas de transporte de carga, con tecnología anti-jammer propia y niveles de protección del 3 al 6.",
+        "areaServed": "MX",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+52-81-8466-0360",
+          "contactType": "sales",
+          "availableLanguage": "Spanish"
+        },
+        "sameAs": [
+          "https://www.linkedin.com/company/logitrack",
+          "https://www.instagram.com/logitrackmx",
+          "https://www.facebook.com/logitrackmx"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Funciona el sistema Logitrack bajo ataque de jammer o inhibidor de señal?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí, el sistema Logitrack continúa bloqueando el vehículo incluso bajo ataque de inhibidor de señal. Nuestra tecnología anti-jammer mantiene el bloqueo activo aunque se interrumpa la señal GPS. Si el jammer es demasiado potente, el sistema envía alertas inmediatas al C5 y al operador mientras mantiene los bloqueos físicos activados."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cuánto tiempo tarda la instalación del sistema de seguridad?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La instalación básica tarda aproximadamente 1 hora. Los sistemas avanzados (Nivel 5 y 6 con bloqueos múltiples, quinta rueda y frenos neumáticos) requieren entre 5 y 6 horas. Contamos con instaladores certificados en todo México."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cuál es la cobertura geográfica del sistema de rastreo?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Logitrack ofrece cobertura en México, Estados Unidos, Canadá y más de 150 países mediante SIM multioperador (Telcel, AT&T, Movistar). El sistema cuenta con respaldo 2G en zonas con señal limitada y garantizamos 99%+ de uptime en nuestra plataforma."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cuánto cuesta el sistema de seguridad para camiones de Logitrack?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "El costo varía según el nivel de protección requerido (Niveles 3 al 6) y el número de unidades. Ofrecemos opciones de venta directa y comodato (arrendamiento). Solicita una cotización personalizada para tu flota en ventas@logitrack.com.mx o al +52 81 8466 0360."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué garantía tienen los equipos Logitrack?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Los equipos vendidos directamente tienen 12 meses de garantía. Los sistemas en modalidad comodato (arrendamiento) están cubiertos durante toda la duración del contrato. Logitrack fabrica sus propios equipos GPS y sistemas de seguridad."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ─── DESIGN TOKENS ─── */
+    :root {
+      /* Colors */
+      --bg:       #060B18;
+      --surface1: #0D1426;
+      --surface2: #121E35;
+      --surface3: #1A2845;
+      --border:   rgba(255,255,255,0.07);
+      --border2:  rgba(255,255,255,0.12);
+
+      --blue:     #1A6BFF;
+      --blue-d:   #1254CC;
+      --blue-l:   #4D93FF;
+      --amber:    #FF6200;
+      --amber-d:  #CC4E00;
+      --amber-l:  #FF8540;
+      --green:    #00C27A;
+      --red:      #FF3B30;
+
+      --text:     #EDF0F7;
+      --text2:    #8A97B5;
+      --text3:    #56637F;
+
+      /* Spacing (8pt grid) */
+      --s1: 4px;  --s2: 8px;  --s3: 12px; --s4: 16px;
+      --s5: 24px; --s6: 32px; --s7: 48px; --s8: 64px; --s9: 96px;
+
+      /* Radius */
+      --r1: 6px;  --r2: 10px; --r3: 16px; --r4: 24px; --r5: 100px;
+
+      /* Shadows */
+      --shadow-blue: 0 0 32px rgba(26,107,255,0.25);
+      --shadow-amber: 0 0 24px rgba(255,98,0,0.35);
+      --shadow-card: 0 8px 32px rgba(0,0,0,0.4);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5 {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; font-family: inherit; }
+
+    /* ─── CONTAINER ─── */
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 var(--s8); }
+    @media (max-width: 768px) { .wrap { padding: 0 var(--s5); } }
+
+    /* ─── UTILS ─── */
+    .tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 14px;
+      background: rgba(26,107,255,0.1);
+      border: 1px solid rgba(26,107,255,0.25);
+      border-radius: var(--r5);
+      font-size: 12px; font-weight: 600; letter-spacing: 0.07em;
+      text-transform: uppercase; color: var(--blue-l);
+    }
+    .tag.amber {
+      background: rgba(255,98,0,0.1);
+      border-color: rgba(255,98,0,0.25);
+      color: var(--amber-l);
+    }
+
+    /* ─── BUTTONS ─── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      height: 48px; padding: 0 28px;
+      border: none; border-radius: var(--r2);
+      font-size: 15px; font-weight: 600;
+      transition: all 0.18s ease;
+      position: relative; overflow: hidden;
+    }
+    .btn::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(255,255,255,0.08);
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+    .btn:hover::before { opacity: 1; }
+    .btn:active { transform: scale(0.98); }
+
+    .btn-primary {
+      background: linear-gradient(180deg, var(--amber-l) 0%, var(--amber) 60%, var(--amber-d) 100%);
+      color: #fff;
+      box-shadow: var(--shadow-amber), inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+    .btn-primary:hover {
+      box-shadow: 0 0 40px rgba(255,98,0,0.5), inset 0 1px 0 rgba(255,255,255,0.2);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border2);
+      color: var(--text);
+    }
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text2);
+      height: 40px; padding: 0 20px;
+      font-size: 14px;
+    }
+    .btn-ghost:hover {
+      border-color: var(--border2);
+      color: var(--text);
+    }
+
+    .btn-blue {
+      background: linear-gradient(180deg, var(--blue-l) 0%, var(--blue) 60%, var(--blue-d) 100%);
+      color: #fff;
+      box-shadow: var(--shadow-blue), inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(6,11,24,0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      height: 64px;
+      display: flex; align-items: center;
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 var(--s8);
+      width: 100%;
+      display: flex; align-items: center; gap: var(--s6);
+    }
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px; font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      flex-shrink: 0;
+    }
+    .logo span { color: var(--blue); }
+    .nav-links {
+      display: flex; align-items: center; gap: var(--s5);
+      flex: 1;
+    }
+    .nav-links a {
+      font-size: 14px; font-weight: 500;
+      color: var(--text2);
+      transition: color 0.15s;
+      white-space: nowrap;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-actions { display: flex; align-items: center; gap: var(--s2); margin-left: auto; }
+    .nav-access {
+      font-size: 13px; font-weight: 500; color: var(--text2);
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--r1);
+      transition: all 0.15s;
+    }
+    .nav-access:hover { color: var(--text); border-color: var(--border2); background: rgba(255,255,255,0.04); }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-inner { padding: 0 var(--s5); }
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 120px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 800px 600px at 60% 40%, rgba(26,107,255,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 600px 400px at 10% 80%, rgba(255,98,0,0.05) 0%, transparent 60%),
+        linear-gradient(180deg, #060B18 0%, #08102B 50%, #060B18 100%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(26,107,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(26,107,255,0.04) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+    }
+    .hero-content {
+      position: relative; z-index: 1;
+      max-width: 1200px; margin: 0 auto; padding: 0 var(--s8);
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; gap: var(--s9);
+    }
+    .hero-left { max-width: 580px; }
+
+    .hero-stat-pill {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 8px 16px 8px 12px;
+      background: rgba(255,59,48,0.08);
+      border: 1px solid rgba(255,59,48,0.2);
+      border-radius: var(--r5);
+      margin-bottom: var(--s5);
+      animation: pulse-red 3s ease-in-out infinite;
+    }
+    @keyframes pulse-red {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(255,59,48,0.15); }
+      50% { box-shadow: 0 0 0 8px rgba(255,59,48,0); }
+    }
+    .hero-stat-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #FF3B30;
+      box-shadow: 0 0 8px rgba(255,59,48,0.8);
+      animation: blink 1.5s ease-in-out infinite;
+    }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+    .hero-stat-text { font-size: 13px; font-weight: 600; color: #FF8080; }
+
+    h1.hero-title {
+      font-size: clamp(40px, 5vw, 64px);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      margin-bottom: var(--s5);
+      color: var(--text);
+    }
+    h1.hero-title em {
+      font-style: normal;
+      background: linear-gradient(135deg, #4D93FF 0%, #1A6BFF 50%, #A855F7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 18px; color: var(--text2);
+      line-height: 1.6; margin-bottom: var(--s6);
+      max-width: 480px;
+    }
+    .hero-sub strong { color: var(--text); font-weight: 600; }
+
+    .hero-ctas {
+      display: flex; flex-wrap: wrap; align-items: center; gap: var(--s3);
+      margin-bottom: var(--s5);
+    }
+    .hero-cta-note {
+      font-size: 12px; color: var(--text3);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .hero-cta-note::before {
+      content: '✓';
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    .hero-trust {
+      display: flex; align-items: center; gap: var(--s5);
+      padding-top: var(--s5);
+      border-top: 1px solid var(--border);
+    }
+    .hero-trust-item { text-align: center; }
+    .hero-trust-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 24px; font-weight: 800; letter-spacing: -0.03em;
+      color: var(--text);
+    }
+    .hero-trust-num span { color: var(--blue-l); }
+    .hero-trust-label { font-size: 11px; color: var(--text3); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .hero-trust-divider { width: 1px; height: 40px; background: var(--border); }
+
+    /* Hero right — visual mockup */
+    .hero-visual {
+      position: relative;
+    }
+    .hero-card {
+      background: linear-gradient(135deg, var(--surface1) 0%, var(--surface2) 100%);
+      border: 1px solid var(--border2);
+      border-radius: var(--r3);
+      padding: var(--s5);
+      box-shadow: var(--shadow-card), 0 0 0 1px rgba(255,255,255,0.04) inset;
+    }
+    .hero-card-header {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: var(--s4);
+      padding-bottom: var(--s4);
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-card-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .d-red { background: #FF3B30; box-shadow: 0 0 8px rgba(255,59,48,0.7); }
+    .d-yellow { background: #FFB800; box-shadow: 0 0 8px rgba(255,184,0,0.6); }
+    .d-green { background: #00C27A; box-shadow: 0 0 8px rgba(0,194,122,0.6); }
+    .hero-card-title { font-size: 13px; font-weight: 600; color: var(--text2); margin-left: auto; }
+
+    .alert-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 14px;
+      border-radius: var(--r2);
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+    .alert-item:last-child { margin-bottom: 0; }
+    .alert-critical {
+      background: rgba(255,59,48,0.08);
+      border: 1px solid rgba(255,59,48,0.2);
+    }
+    .alert-warning {
+      background: rgba(255,184,0,0.07);
+      border: 1px solid rgba(255,184,0,0.18);
+    }
+    .alert-success {
+      background: rgba(0,194,122,0.07);
+      border: 1px solid rgba(0,194,122,0.2);
+    }
+    .alert-icon { font-size: 16px; flex-shrink: 0; }
+    .alert-content { flex: 1; }
+    .alert-label { font-weight: 700; color: var(--text); font-size: 12px; }
+    .alert-detail { color: var(--text2); font-size: 11px; margin-top: 1px; }
+    .alert-time { font-size: 11px; color: var(--text3); }
+
+    .hero-map {
+      margin-top: 14px;
+      height: 120px;
+      background:
+        radial-gradient(circle at 40% 60%, rgba(0,194,122,0.15) 0%, transparent 40%),
+        radial-gradient(circle at 70% 30%, rgba(26,107,255,0.1) 0%, transparent 35%),
+        var(--surface1);
+      border-radius: var(--r2);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-map::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(26,107,255,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(26,107,255,0.06) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+    .map-ping {
+      width: 12px; height: 12px;
+      background: var(--green);
+      border-radius: 50%;
+      box-shadow: 0 0 12px rgba(0,194,122,0.8);
+      position: relative; z-index: 1;
+    }
+    .map-ping::before {
+      content: '';
+      position: absolute; inset: -8px;
+      background: rgba(0,194,122,0.15);
+      border-radius: 50%;
+      animation: ping 2s ease-in-out infinite;
+    }
+    @keyframes ping {
+      0% { transform: scale(0.5); opacity: 1; }
+      100% { transform: scale(2); opacity: 0; }
+    }
+    .map-label {
+      position: absolute; bottom: 12px; right: 12px;
+      font-size: 11px; font-weight: 600; color: var(--green);
+      background: rgba(0,194,122,0.1);
+      border: 1px solid rgba(0,194,122,0.2);
+      padding: 3px 8px; border-radius: var(--r5);
+    }
+
+    /* Floating badges */
+    .float-badge {
+      position: absolute;
+      background: var(--surface1);
+      border: 1px solid var(--border2);
+      border-radius: var(--r2);
+      padding: 10px 14px;
+      display: flex; align-items: center; gap: 10px;
+      box-shadow: var(--shadow-card);
+      white-space: nowrap;
+    }
+    .float-badge-1 { top: -20px; right: -20px; animation: float1 4s ease-in-out infinite; }
+    .float-badge-2 { bottom: 40px; left: -30px; animation: float2 5s ease-in-out infinite; }
+    @keyframes float1 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    @keyframes float2 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+    .float-badge-icon { font-size: 18px; }
+    .float-badge-text { font-size: 12px; }
+    .float-badge-text strong { display: block; font-weight: 700; color: var(--text); font-size: 13px; }
+    .float-badge-text span { color: var(--text2); }
+
+    @media (max-width: 1024px) {
+      .hero-content { grid-template-columns: 1fr; gap: var(--s7); }
+      .hero-visual { display: none; }
+    }
+    @media (max-width: 768px) {
+      .hero { padding: 100px 0 60px; }
+      .hero-content { padding: 0 var(--s5); }
+      h1.hero-title { font-size: 36px; }
+      .hero-sub { font-size: 16px; }
+    }
+
+    /* ─── PARTNERS ─── */
+    .partners {
+      padding: var(--s7) 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface1);
+    }
+    .partners-label {
+      text-align: center;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text3);
+      margin-bottom: var(--s5);
+    }
+    .partners-logos {
+      display: flex; align-items: center; justify-content: center;
+      flex-wrap: wrap; gap: var(--s7);
+    }
+    .partner-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px; font-weight: 700;
+      color: var(--text3);
+      letter-spacing: -0.01em;
+      filter: grayscale(1);
+      opacity: 0.5;
+      transition: all 0.2s;
+    }
+    .partner-logo:hover { opacity: 0.9; filter: grayscale(0); color: var(--text2); }
+
+    /* ─── METRICS ─── */
+    .metrics {
+      padding: var(--s9) 0;
+      background: linear-gradient(180deg, var(--surface1) 0%, var(--bg) 100%);
+    }
+    .metrics-header { text-align: center; margin-bottom: var(--s7); }
+    .metrics-title {
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 800; margin-bottom: var(--s3);
+    }
+    .metrics-sub { font-size: 16px; color: var(--text2); max-width: 500px; margin: 0 auto; }
+
+    .metrics-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s4);
+      margin-bottom: var(--s7);
+    }
+    .metric-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--r3);
+      padding: var(--s6);
+      text-align: center;
+      position: relative; overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .metric-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+    .metric-card::before {
+      content: '';
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 60%; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(26,107,255,0.4), transparent);
+    }
+    .metric-big {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 52px; font-weight: 800; letter-spacing: -0.04em;
+      line-height: 1; margin-bottom: 6px;
+    }
+    .metric-big.blue { color: var(--blue-l); }
+    .metric-big.amber { color: var(--amber-l); }
+    .metric-big.green { color: var(--green); }
+    .metric-big.white { color: var(--text); }
+    .metric-label { font-size: 13px; color: var(--text2); line-height: 1.4; }
+    .metric-source { font-size: 11px; color: var(--text3); margin-top: 8px; }
+
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s4);
+    }
+    .testimonial-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--r3);
+      padding: var(--s5);
+      display: flex; flex-direction: column; gap: var(--s3);
+    }
+    .testimonial-quote {
+      font-size: 14px; color: var(--text2); line-height: 1.6; flex: 1;
+    }
+    .testimonial-quote::before {
+      content: '"';
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 40px; line-height: 1;
+      color: var(--blue);
+      display: block; margin-bottom: 8px;
+    }
+    .testimonial-author { display: flex; align-items: center; gap: 10px; }
+    .author-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--surface3), var(--surface1));
+      border: 1px solid var(--border2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 700; color: var(--blue-l);
+      flex-shrink: 0;
+    }
+    .author-name { font-size: 13px; font-weight: 700; color: var(--text); }
+    .author-role { font-size: 11px; color: var(--text3); }
+    .testimonial-stat {
+      padding: 10px 14px;
+      background: rgba(0,194,122,0.07);
+      border: 1px solid rgba(0,194,122,0.15);
+      border-radius: var(--r1);
+      font-size: 13px; font-weight: 600; color: var(--green);
+    }
+
+    @media (max-width: 900px) {
+      .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─── HOW IT WORKS ─── */
+    .how {
+      padding: var(--s9) 0;
+      background: var(--bg);
+      position: relative;
+      overflow: hidden;
+    }
+    .how::before {
+      content: '';
+      position: absolute;
+      left: 50%; top: 20%;
+      transform: translateX(-50%);
+      width: 800px; height: 400px;
+      background: radial-gradient(ellipse, rgba(26,107,255,0.06) 0%, transparent 70%);
+    }
+    .how-header { text-align: center; margin-bottom: var(--s7); position: relative; }
+    .how-title { font-size: clamp(28px, 3.5vw, 44px); font-weight: 800; margin-bottom: var(--s3); }
+    .how-sub { font-size: 16px; color: var(--text2); max-width: 500px; margin: 0 auto; }
+
+    .how-steps {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+      position: relative;
+    }
+    .how-steps::before {
+      content: '';
+      position: absolute; top: 48px; left: calc(16.67% + 32px); right: calc(16.67% + 32px);
+      height: 2px;
+      background: linear-gradient(90deg, var(--blue) 0%, rgba(26,107,255,0.3) 50%, var(--blue) 100%);
+      z-index: 0;
+    }
+    .how-step {
+      padding: var(--s6) var(--s5);
+      text-align: center;
+      position: relative;
+    }
+    .step-icon-wrap {
+      width: 96px; height: 96px;
+      border-radius: var(--r3);
+      margin: 0 auto var(--s5);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 36px;
+      position: relative; z-index: 1;
+      transition: transform 0.2s;
+    }
+    .how-step:hover .step-icon-wrap { transform: translateY(-4px); }
+    .step-icon-wrap.s1 {
+      background: linear-gradient(135deg, rgba(255,59,48,0.15), rgba(255,59,48,0.05));
+      border: 1px solid rgba(255,59,48,0.2);
+      box-shadow: 0 0 32px rgba(255,59,48,0.1);
+    }
+    .step-icon-wrap.s2 {
+      background: linear-gradient(135deg, rgba(26,107,255,0.15), rgba(26,107,255,0.05));
+      border: 1px solid rgba(26,107,255,0.25);
+      box-shadow: 0 0 32px rgba(26,107,255,0.12);
+    }
+    .step-icon-wrap.s3 {
+      background: linear-gradient(135deg, rgba(0,194,122,0.15), rgba(0,194,122,0.05));
+      border: 1px solid rgba(0,194,122,0.2);
+      box-shadow: 0 0 32px rgba(0,194,122,0.1);
+    }
+    .step-num {
+      position: absolute; top: -8px; right: -8px;
+      width: 24px; height: 24px;
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: 50%;
+      font-size: 11px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text3);
+    }
+    .step-title { font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+    .step-desc { font-size: 14px; color: var(--text2); line-height: 1.6; max-width: 220px; margin: 0 auto; }
+    .step-badge {
+      display: inline-block; margin-top: 12px;
+      padding: 4px 12px;
+      background: rgba(26,107,255,0.08);
+      border: 1px solid rgba(26,107,255,0.2);
+      border-radius: var(--r5);
+      font-size: 11px; font-weight: 600; color: var(--blue-l);
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 768px) {
+      .how-steps { grid-template-columns: 1fr; }
+      .how-steps::before { display: none; }
+    }
+
+    /* ─── SOLUTIONS ─── */
+    .solutions {
+      padding: var(--s9) 0;
+      background: var(--surface1);
+    }
+    .solutions-header { margin-bottom: var(--s7); }
+    .solutions-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s4);
+    }
+    .solution-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--r3);
+      padding: var(--s6);
+      display: flex; flex-direction: column; gap: var(--s4);
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .solution-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 3px;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .solution-card.c1::before { background: linear-gradient(90deg, #FF3B30, #FF6B00); }
+    .solution-card.c2::before { background: linear-gradient(90deg, #1A6BFF, #A855F7); }
+    .solution-card.c3::before { background: linear-gradient(90deg, #00C27A, #1A6BFF); }
+    .solution-card.c4::before { background: linear-gradient(90deg, #FFB800, #FF6200); }
+    .solution-card:hover { border-color: var(--border2); transform: translateY(-3px); box-shadow: var(--shadow-card); }
+    .solution-card:hover::before { opacity: 1; }
+    .solution-icon {
+      font-size: 32px;
+      width: 64px; height: 64px;
+      background: var(--surface3);
+      border: 1px solid var(--border);
+      border-radius: var(--r2);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .solution-title { font-size: 22px; font-weight: 700; }
+    .solution-desc { font-size: 14px; color: var(--text2); line-height: 1.6; }
+    .solution-features {
+      display: flex; flex-direction: column; gap: 8px; flex: 1;
+    }
+    .solution-feature {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; color: var(--text2);
+    }
+    .solution-feature::before {
+      content: '✓';
+      color: var(--green);
+      font-weight: 700; font-size: 12px;
+      width: 16px; flex-shrink: 0;
+    }
+    .solution-cta {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 14px; font-weight: 600; color: var(--blue-l);
+      margin-top: auto;
+      transition: gap 0.15s;
+    }
+    .solution-card:hover .solution-cta { gap: 10px; }
+
+    @media (max-width: 768px) { .solutions-grid { grid-template-columns: 1fr; } }
+
+    /* ─── LEVELS ─── */
+    .levels {
+      padding: var(--s9) 0;
+      background: var(--bg);
+    }
+    .levels-header { text-align: center; margin-bottom: var(--s7); }
+    .levels-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s4);
+    }
+    .level-card {
+      background: var(--surface2);
+      border: 2px solid var(--border);
+      border-radius: var(--r3);
+      padding: var(--s6);
+      position: relative; overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .level-card:hover { transform: translateY(-3px); }
+    .level-card.featured {
+      border-color: var(--blue);
+      box-shadow: var(--shadow-blue);
+    }
+    .level-badge {
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      background: var(--blue);
+      padding: 4px 16px;
+      border-radius: 0 0 var(--r2) var(--r2);
+      font-size: 11px; font-weight: 700; color: #fff;
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .level-name { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text3); margin-bottom: 8px; margin-top: 12px; }
+    .level-title { font-size: 26px; font-weight: 800; margin-bottom: var(--s3); }
+    .level-desc { font-size: 14px; color: var(--text2); margin-bottom: var(--s5); line-height: 1.5; }
+    .level-features {
+      display: flex; flex-direction: column; gap: 10px;
+      margin-bottom: var(--s5);
+    }
+    .level-feature {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 13px; color: var(--text2);
+    }
+    .lf-icon { flex-shrink: 0; font-size: 14px; }
+
+    @media (max-width: 900px) { .levels-grid { grid-template-columns: 1fr; } }
+
+    /* ─── ROI CALCULATOR ─── */
+    .roi {
+      padding: var(--s9) 0;
+      background: linear-gradient(180deg, var(--surface1), var(--bg));
+    }
+    .roi-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: var(--s7);
+      align-items: center;
+    }
+    .roi-text { }
+    .roi-title { font-size: clamp(28px, 3.5vw, 40px); font-weight: 800; margin-bottom: var(--s4); }
+    .roi-sub { font-size: 16px; color: var(--text2); line-height: 1.6; margin-bottom: var(--s5); }
+
+    .roi-calc {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--r3);
+      padding: var(--s6);
+    }
+    .roi-calc-title { font-size: 16px; font-weight: 700; margin-bottom: var(--s5); }
+    .calc-field { margin-bottom: var(--s4); }
+    .calc-label { font-size: 13px; font-weight: 600; color: var(--text2); margin-bottom: 6px; display: block; }
+    .calc-input {
+      width: 100%; height: 48px;
+      background: var(--surface3);
+      border: 1px solid var(--border);
+      border-radius: var(--r2);
+      padding: 0 16px;
+      font-size: 15px; font-weight: 600;
+      color: var(--text);
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.15s;
+      -webkit-appearance: none;
+    }
+    .calc-input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(26,107,255,0.12); }
+    .calc-result {
+      margin-top: var(--s5);
+      padding: var(--s5);
+      background: rgba(0,194,122,0.07);
+      border: 1px solid rgba(0,194,122,0.2);
+      border-radius: var(--r2);
+    }
+    .calc-result-label { font-size: 12px; color: var(--green); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+    .calc-result-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 36px; font-weight: 800; color: var(--text);
+      letter-spacing: -0.03em;
+    }
+    .calc-result-sub { font-size: 12px; color: var(--text3); margin-top: 4px; }
+
+    @media (max-width: 900px) { .roi-inner { grid-template-columns: 1fr; } }
+
+    /* ─── FAQ ─── */
+    .faq {
+      padding: var(--s9) 0;
+      background: var(--bg);
+    }
+    .faq-header { text-align: center; margin-bottom: var(--s7); }
+    .faq-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s3);
+    }
+    .faq-item {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--r2);
+      overflow: hidden;
+    }
+    .faq-q {
+      padding: var(--s4) var(--s5);
+      font-size: 15px; font-weight: 600;
+      display: flex; align-items: flex-start; justify-content: space-between; gap: var(--s3);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .faq-q:hover { background: rgba(255,255,255,0.03); }
+    .faq-chevron { color: var(--text3); flex-shrink: 0; margin-top: 3px; transition: transform 0.2s; }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); color: var(--blue-l); }
+    .faq-a {
+      padding: 0 var(--s5) var(--s4);
+      font-size: 14px; color: var(--text2); line-height: 1.65;
+      display: none;
+      border-top: 1px solid var(--border);
+      padding-top: var(--s3);
+    }
+    .faq-item.open .faq-a { display: block; }
+    .faq-a strong { color: var(--text); }
+
+    @media (max-width: 768px) { .faq-grid { grid-template-columns: 1fr; } }
+
+    /* ─── CTA SECTION ─── */
+    .cta-section {
+      padding: var(--s9) 0;
+      background: linear-gradient(135deg, #0A0F1E 0%, #0D1633 50%, #0A0F1E 100%);
+      border-top: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 800px; height: 400px;
+      background: radial-gradient(ellipse, rgba(26,107,255,0.1) 0%, transparent 70%);
+    }
+    .cta-inner { text-align: center; position: relative; }
+    .cta-title { font-size: clamp(32px, 4vw, 56px); font-weight: 800; margin-bottom: var(--s4); }
+    .cta-sub { font-size: 18px; color: var(--text2); max-width: 520px; margin: 0 auto var(--s6); line-height: 1.6; }
+
+    .cta-form {
+      display: flex; gap: var(--s3);
+      max-width: 520px; margin: 0 auto var(--s4);
+      flex-wrap: wrap;
+    }
+    .cta-input {
+      flex: 1; min-width: 200px; height: 52px;
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: var(--r2);
+      padding: 0 var(--s4);
+      font-size: 15px; color: var(--text);
+      font-family: inherit; outline: none;
+      transition: border-color 0.15s;
+    }
+    .cta-input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(26,107,255,0.12); }
+    .cta-input::placeholder { color: var(--text3); }
+    .btn-cta-submit {
+      height: 52px; padding: 0 var(--s6);
+      background: linear-gradient(180deg, var(--amber-l) 0%, var(--amber) 60%, var(--amber-d) 100%);
+      color: #fff; border: none; border-radius: var(--r2);
+      font-size: 15px; font-weight: 700;
+      cursor: pointer; font-family: inherit;
+      box-shadow: var(--shadow-amber);
+      white-space: nowrap;
+      transition: all 0.18s;
+    }
+    .btn-cta-submit:hover { box-shadow: 0 0 40px rgba(255,98,0,0.5); transform: translateY(-1px); }
+
+    .cta-note { font-size: 13px; color: var(--text3); }
+    .cta-note a { color: var(--blue-l); }
+
+    .cta-whatsapp {
+      display: inline-flex; align-items: center; gap: 10px;
+      margin-top: var(--s5);
+      padding: 12px 24px;
+      background: rgba(37,211,102,0.08);
+      border: 1px solid rgba(37,211,102,0.2);
+      border-radius: var(--r5);
+      font-size: 14px; font-weight: 600; color: #25D166;
+      transition: all 0.15s;
+    }
+    .cta-whatsapp:hover { background: rgba(37,211,102,0.14); border-color: rgba(37,211,102,0.3); }
+    .cta-divider { color: var(--text3); margin: var(--s4) 0; font-size: 13px; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #040811;
+      border-top: 1px solid var(--border);
+      padding: var(--s8) 0 var(--s6);
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: var(--s7);
+      margin-bottom: var(--s7);
+    }
+    .footer-brand { }
+    .footer-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px; font-weight: 800;
+      letter-spacing: -0.03em; margin-bottom: var(--s3);
+    }
+    .footer-logo span { color: var(--blue); }
+    .footer-desc { font-size: 13px; color: var(--text3); line-height: 1.6; max-width: 260px; }
+    .footer-col h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text3); margin-bottom: var(--s4); }
+    .footer-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { font-size: 13px; color: var(--text3); transition: color 0.15s; }
+    .footer-links a:hover { color: var(--text2); }
+    .footer-bottom {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: var(--s5);
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap; gap: var(--s3);
+    }
+    .footer-copy { font-size: 12px; color: var(--text3); }
+    .footer-socials { display: flex; gap: var(--s3); }
+    .footer-social {
+      width: 32px; height: 32px;
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: var(--r1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+      transition: all 0.15s;
+    }
+    .footer-social:hover { background: var(--surface3); border-color: var(--border2); }
+
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+
+    /* ─── SECTION COMMON ─── */
+    .section-tag { margin-bottom: var(--s4); }
+    .section-h2 { font-size: clamp(28px, 3.5vw, 44px); font-weight: 800; margin-bottom: var(--s3); }
+    .section-sub { font-size: 16px; color: var(--text2); line-height: 1.6; }
+
+    /* ─── SCROLL ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate { animation: fadeUp 0.6s ease both; }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+  </style>
+</head>
+
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo">Logi<span>track</span></div>
+    <div class="nav-links">
+      <a href="#soluciones">Soluciones</a>
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#niveles">Niveles</a>
+      <a href="#alianzas">Alianzas</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="/blog">Blog</a>
+    </div>
+    <div class="nav-actions">
+      <a class="nav-access" href="#acceder">Acceder ↗</a>
+      <a class="btn btn-primary" href="#demo" style="height:40px; padding:0 20px; font-size:14px;">
+        Demo Gratis
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+
+    <div class="hero-left animate">
+      <!-- Urgency stat -->
+      <div class="hero-stat-pill">
+        <div class="hero-stat-dot"></div>
+        <span class="hero-stat-text">En México, 1 camión es asaltado cada <strong>30 minutos</strong></span>
+      </div>
+
+      <h1 class="hero-title">
+        El único sistema que bloquea tu flota<br/>
+        <em>incluso bajo ataque de jammer</em>
+      </h1>
+
+      <p class="hero-sub">
+        Tecnología anti-robo con <strong>IA integrada</strong> que detecta, decide y ejecuta secuencias de seguridad en tiempo real. <strong>99% de efectividad</strong> comprobada en más de 500 flotas en México.
+      </p>
+
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#demo" id="demo">
+          🛡 Solicitar Demo Gratis
+        </a>
+        <a class="btn btn-secondary" href="#como-funciona">
+          Ver cómo funciona →
+        </a>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:4px; margin-bottom:var(--s5);">
+        <div class="hero-cta-note">Sin compromiso · Sin costo · Respuesta en 24 horas</div>
+        <div class="hero-cta-note">Instalación en 1-6 horas · Cobertura en 150+ países</div>
+      </div>
+
+      <div class="hero-trust">
+        <div class="hero-trust-item">
+          <div class="hero-trust-num"><span>99</span>%</div>
+          <div class="hero-trust-label">Efectividad</div>
+        </div>
+        <div class="hero-trust-divider"></div>
+        <div class="hero-trust-item">
+          <div class="hero-trust-num"><span>+500</span></div>
+          <div class="hero-trust-label">Flotas activas</div>
+        </div>
+        <div class="hero-trust-divider"></div>
+        <div class="hero-trust-item">
+          <div class="hero-trust-num"><span>4</span></div>
+          <div class="hero-trust-label">Niveles de blindaje</div>
+        </div>
+        <div class="hero-trust-divider"></div>
+        <div class="hero-trust-item">
+          <div class="hero-trust-num"><span>150+</span></div>
+          <div class="hero-trust-label">Países cobertura</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero visual -->
+    <div class="hero-visual animate delay-2">
+      <div style="position:relative;">
+        <div class="hero-card">
+          <div class="hero-card-header">
+            <div class="hero-card-dot d-red"></div>
+            <div class="hero-card-dot d-yellow"></div>
+            <div class="hero-card-dot d-green"></div>
+            <div class="hero-card-title">Centro de Control — Flota Activa</div>
+          </div>
+
+          <div class="alert-item alert-critical">
+            <div class="alert-icon">🚨</div>
+            <div class="alert-content">
+              <div class="alert-label">ALERTA CRÍTICA — Jammer detectado</div>
+              <div class="alert-detail">Unidad GT-047 · Autopista MEX-57 Km 312</div>
+            </div>
+            <div class="alert-time">00:23</div>
+          </div>
+          <div class="alert-item alert-warning">
+            <div class="alert-icon">⚡</div>
+            <div class="alert-content">
+              <div class="alert-label">Activando secuencia de bloqueo</div>
+              <div class="alert-detail">Reducción de motor + cierre de cabina</div>
+            </div>
+            <div class="alert-time">00:24</div>
+          </div>
+          <div class="alert-item alert-success">
+            <div class="alert-icon">✅</div>
+            <div class="alert-content">
+              <div class="alert-label">Unidad asegurada · C5 notificado</div>
+              <div class="alert-detail">Robo frustrado · Equipo recuperado</div>
+            </div>
+            <div class="alert-time">00:26</div>
+          </div>
+
+          <div class="hero-map">
+            <div class="map-ping"></div>
+            <div class="map-label">📡 Rastreo activo</div>
+          </div>
+        </div>
+
+        <!-- Floating badges -->
+        <div class="float-badge float-badge-1">
+          <div class="float-badge-icon">🛡</div>
+          <div class="float-badge-text">
+            <strong>Anti-Jammer activo</strong>
+            <span>Nivel 5 — Protección total</span>
+          </div>
+        </div>
+        <div class="float-badge float-badge-2">
+          <div class="float-badge-icon">📊</div>
+          <div class="float-badge-text">
+            <strong>ROI en 1 mes</strong>
+            <span>Grupo Camionera Regional</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ PARTNERS ═══ -->
+<section class="partners" id="alianzas">
+  <div class="wrap">
+    <div class="partners-label">Trabajamos con las principales aseguradoras y fabricantes de México</div>
+    <div class="partners-logos">
+      <div class="partner-logo">Qualitas</div>
+      <div class="partner-logo">ANA Seguros</div>
+      <div class="partner-logo">AXXA</div>
+      <div class="partner-logo">Kenworth</div>
+      <div class="partner-logo">SSP</div>
+      <div class="partner-logo">Círculo Logístico</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ METRICS + TESTIMONIALS ═══ -->
+<section class="metrics">
+  <div class="wrap">
+    <div class="metrics-header animate">
+      <div class="tag" style="margin-bottom:16px;">Resultados comprobados</div>
+      <h2 class="section-h2">Números que hablan por sí solos</h2>
+      <p class="metrics-sub">Clientes reales, resultados reales. Esto es lo que Logitrack ha logrado para flotas en México.</p>
+    </div>
+
+    <div class="metrics-grid">
+      <div class="metric-card animate delay-1">
+        <div class="metric-big green">97<span style="font-size:28px">%</span></div>
+        <div class="metric-label">Tasa de recuperación de equipo robado</div>
+        <div class="metric-source">TDR Transportes (antes: 50%)</div>
+      </div>
+      <div class="metric-card animate delay-2">
+        <div class="metric-big amber">+1M</div>
+        <div class="metric-label">Pesos ahorrados en 13 meses de operación</div>
+        <div class="metric-source">RAME Autotransportes</div>
+      </div>
+      <div class="metric-card animate delay-3">
+        <div class="metric-big blue">15</div>
+        <div class="metric-label">Asaltos frustrados en una sola empresa</div>
+        <div class="metric-source">Grupo Camionera Regional</div>
+      </div>
+      <div class="metric-card animate delay-4">
+        <div class="metric-big white">1</div>
+        <div class="metric-label" style="font-size:14px; font-weight:600;">mes<br/><span style="font-size:12px; font-weight:400; color:var(--text3);">para recuperar la inversión</span></div>
+        <div class="metric-source">Grupo Camionera Regional</div>
+      </div>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card animate delay-1">
+        <div class="testimonial-stat">97% tasa de recuperación (antes: 50%)</div>
+        <p class="testimonial-quote">Con su robusto sistema de seguridad, Logitrack nos ha dado un resultado del 97% de recuperación de equipo, cuando antes era del 50%.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">TDR</div>
+          <div>
+            <div class="author-name">Sub-Gerente de Seguridad</div>
+            <div class="author-role">TDR Transportes</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card animate delay-2">
+        <div class="testimonial-stat">4 asaltos frustrados · $1M+ pesos ahorrados</div>
+        <p class="testimonial-quote">Durante 13 meses de uso, se han frustrado 4 asaltos a nuestros tractocamiones y hemos ahorrado más de 1 millón de pesos.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">RA</div>
+          <div>
+            <div class="author-name">Director General</div>
+            <div class="author-role">RAME Autotransportes</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card animate delay-3">
+        <div class="testimonial-stat">15 asaltos prevenidos · ROI en 1 mes</div>
+        <p class="testimonial-quote">Nuestra empresa recuperó su inversión en tan solo 1 mes. Nos ayudaron a prevenir 15 asaltos a nuestras unidades. Estamos muy satisfechos.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">GCR</div>
+          <div>
+            <div class="author-name">Seguridad Patrimonial</div>
+            <div class="author-role">Grupo Camionera Regional</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<section class="how" id="como-funciona">
+  <div class="wrap">
+    <div class="how-header animate">
+      <div class="tag" style="margin-bottom:16px;">Tecnología con IA</div>
+      <h2 class="how-title">Detecta. Decide. Ejecuta.</h2>
+      <p class="how-sub">Tres fases automatizadas que protegen tu flota sin necesidad de intervención humana.</p>
+    </div>
+
+    <div class="how-steps">
+      <div class="how-step animate delay-1">
+        <div class="step-icon-wrap s1">
+          🔍
+          <div class="step-num">1</div>
+        </div>
+        <div class="step-title">Detecta</div>
+        <p class="step-desc">Sensores propios identifican anomalías: jammers, movimientos sospechosos, apertura de compartimentos, sabotaje del sistema.</p>
+        <div class="step-badge">Anti-Jammer · Anti-Sabotaje</div>
+      </div>
+      <div class="how-step animate delay-2">
+        <div class="step-icon-wrap s2">
+          🧠
+          <div class="step-num">2</div>
+        </div>
+        <div class="step-title">Decide</div>
+        <p class="step-desc">La IA integrada analiza el contexto en milisegundos y activa la secuencia de seguridad adecuada según el nivel de amenaza.</p>
+        <div class="step-badge">IA · Automatización</div>
+      </div>
+      <div class="how-step animate delay-3">
+        <div class="step-icon-wrap s3">
+          ⚡
+          <div class="step-num">3</div>
+        </div>
+        <div class="step-title">Ejecuta</div>
+        <p class="step-desc">Activa bloqueos físicos (motor, cabina, quinta rueda, frenos neumáticos), notifica al C5 y al operador simultáneamente.</p>
+        <div class="step-badge">Bloqueo Físico · C5 · Alertas</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SOLUTIONS ═══ -->
+<section class="solutions" id="soluciones">
+  <div class="wrap">
+    <div class="solutions-header animate">
+      <div class="tag section-tag">Soluciones</div>
+      <h2 class="section-h2">Protección para cada necesidad</h2>
+      <p class="section-sub">No vendemos un producto genérico. Diseñamos la estrategia de seguridad exacta que tu operación requiere.</p>
+    </div>
+    <div class="solutions-grid">
+      <div class="solution-card c1 animate delay-1">
+        <div class="solution-icon">🚛</div>
+        <div class="solution-title">Protege tu cabina</div>
+        <p class="solution-desc">Sistema integral de seguridad para unidades tractoras con bloqueos múltiples y comunicación anti-jammer.</p>
+        <div class="solution-features">
+          <div class="solution-feature">Bloqueo de motor y cabina</div>
+          <div class="solution-feature">Comunicación anti-jammer activa</div>
+          <div class="solution-feature">Alerta automática a C5 + operador</div>
+          <div class="solution-feature">Funciona sin señal GPS</div>
+        </div>
+        <a class="solution-cta" href="#niveles">Ver niveles disponibles <span>→</span></a>
+      </div>
+      <div class="solution-card c2 animate delay-2">
+        <div class="solution-icon">📦</div>
+        <div class="solution-title">Asegura tu mercancía</div>
+        <p class="solution-desc">Control total de enganche y desenganche de remolques. Seguridad absoluta para tu carga y contenido.</p>
+        <div class="solution-features">
+          <div class="solution-feature">Control de quinta rueda (Interlock)</div>
+          <div class="solution-feature">Cierres de puertas de carga (Cargolock)</div>
+          <div class="solution-feature">Sensores de temperatura para carga</div>
+          <div class="solution-feature">Notificación de apertura no autorizada</div>
+        </div>
+        <a class="solution-cta" href="#demo">Solicitar cotización <span>→</span></a>
+      </div>
+      <div class="solution-card c3 animate delay-1">
+        <div class="solution-icon">📡</div>
+        <div class="solution-title">Monitorea tu flota</div>
+        <p class="solution-desc">Rastreo satelital en tiempo real con reporte cada minuto. Diagnóstico remoto para optimizar recursos y reducir costos.</p>
+        <div class="solution-features">
+          <div class="solution-feature">Cobertura en 150+ países</div>
+          <div class="solution-feature">SIM multioperador (Telcel / AT&T / Movistar)</div>
+          <div class="solution-feature">Diagnóstico de motor y rendimiento</div>
+          <div class="solution-feature">Plataforma con 99%+ uptime</div>
+        </div>
+        <a class="solution-cta" href="#demo">Ver demo de plataforma <span>→</span></a>
+      </div>
+      <div class="solution-card c4 animate delay-2">
+        <div class="solution-icon">📷</div>
+        <div class="solution-title">Prevén con visión IA</div>
+        <p class="solution-desc">Cámaras inteligentes Vision Plus con análisis de comportamiento para prevención y evidencia forense instantánea.</p>
+        <div class="solution-features">
+          <div class="solution-feature">Detección de comportamiento sospechoso</div>
+          <div class="solution-feature">Evidencia instantánea en incidentes</div>
+          <div class="solution-feature">Transmisión en tiempo real</div>
+          <div class="solution-feature">Almacenamiento seguro en nube</div>
+        </div>
+        <a class="solution-cta" href="#demo">Conocer Vision Plus <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LEVELS ═══ -->
+<section class="levels" id="niveles">
+  <div class="wrap">
+    <div class="levels-header animate">
+      <div class="tag section-tag">Elige tu nivel</div>
+      <h2 class="section-h2">¿Qué nivel de blindaje necesitas?</h2>
+      <p class="section-sub">Desde protección esencial hasta blindaje total. Cada nivel incluye todo lo del anterior.</p>
+    </div>
+    <div class="levels-grid">
+      <div class="level-card animate delay-1">
+        <div class="level-name">Nivel 3–4</div>
+        <div class="level-title">Flota Esencial</div>
+        <p class="level-desc">Ideal para flotas pequeñas o empresas iniciando su estrategia de seguridad. Rastreo, bloqueo y anti-jammer básico.</p>
+        <div class="level-features">
+          <div class="level-feature"><div class="lf-icon">📡</div>Rastreo 4G con respaldo 2G</div>
+          <div class="level-feature"><div class="lf-icon">🔒</div>Bloqueo de acelerador</div>
+          <div class="level-feature"><div class="lf-icon">📱</div>App móvil + alertas 24/7</div>
+          <div class="level-feature"><div class="lf-icon">🛡</div>Rehabilitación con clave dinámica</div>
+          <div class="level-feature"><div class="lf-icon">📶</div>Protección anti-jammer comunicación</div>
+        </div>
+        <a class="btn btn-ghost" href="#demo" style="width:100%; justify-content:center;">Solicitar cotización</a>
+      </div>
+
+      <div class="level-card featured animate delay-2">
+        <div class="level-badge">MÁS POPULAR</div>
+        <div class="level-name">Nivel 5</div>
+        <div class="level-title">Flota Blindada</div>
+        <p class="level-desc">La elección de la mayoría de las flotas medianas. Protección completa de cabina, carga y comunicación.</p>
+        <div class="level-features">
+          <div class="level-feature"><div class="lf-icon">✅</div>Todo del Nivel 3–4 incluido</div>
+          <div class="level-feature"><div class="lf-icon">🚗</div>Segundo bloqueo (paro de motor)</div>
+          <div class="level-feature"><div class="lf-icon">🚪</div>Bloqueo de puertas de cabina</div>
+          <div class="level-feature"><div class="lf-icon">🔗</div>Compatibilidad quinta rueda (Interlock)</div>
+          <div class="level-feature"><div class="lf-icon">📦</div>Cierres de puertas de carga (Cargolock)</div>
+          <div class="level-feature"><div class="lf-icon">🛡</div>Anti-jammer posición + comunicación</div>
+        </div>
+        <a class="btn btn-blue" href="#demo" style="width:100%; justify-content:center;">Solicitar cotización</a>
+      </div>
+
+      <div class="level-card animate delay-3">
+        <div class="level-name">Nivel 6</div>
+        <div class="level-title">Flota Premium</div>
+        <p class="level-desc">Protección total para flotas de alto valor o zonas de riesgo crítico. Tercer bloqueo con frenado neumático.</p>
+        <div class="level-features">
+          <div class="level-feature"><div class="lf-icon">✅</div>Todo del Nivel 5 incluido</div>
+          <div class="level-feature"><div class="lf-icon">🚨</div>Tercer bloqueo (frenos neumáticos)</div>
+          <div class="level-feature"><div class="lf-icon">🏠</div>Protección total de cabina completa</div>
+          <div class="level-feature"><div class="lf-icon">🔧</div>Compatibilidad avanzada todo tipo de unidades</div>
+          <div class="level-feature"><div class="lf-icon">📹</div>Integración cámaras Vision Plus</div>
+        </div>
+        <a class="btn btn-ghost" href="#demo" style="width:100%; justify-content:center;">Solicitar cotización</a>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:var(--s6); color:var(--text3); font-size:13px;">
+      ¿No sabes qué nivel necesitas? <a href="#demo" style="color:var(--blue-l); font-weight:600;">Habla con un especialista →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ROI CALCULATOR ═══ -->
+<section class="roi">
+  <div class="wrap">
+    <div class="roi-inner">
+      <div class="roi-text animate">
+        <div class="tag section-tag amber">Calculadora ROI</div>
+        <h2 class="roi-title">¿Cuánto pierdes sin Logitrack?</h2>
+        <p class="roi-sub">El robo promedio de un tractocamión cargado en México supera los $800,000 pesos. Calcula tu riesgo real y compáralo con el costo de protección.</p>
+        <div style="display:flex; flex-direction:column; gap:12px; margin-top:var(--s5);">
+          <div style="display:flex; align-items:center; gap:10px; font-size:14px; color:var(--text2);">
+            <span style="color:var(--green); font-weight:700; font-size:16px;">✓</span>
+            El 78% de nuestros clientes recuperan su inversión en menos de 3 meses
+          </div>
+          <div style="display:flex; align-items:center; gap:10px; font-size:14px; color:var(--text2);">
+            <span style="color:var(--green); font-weight:700; font-size:16px;">✓</span>
+            Grupo Camionera Regional: ROI en 1 mes, 15 asaltos prevenidos
+          </div>
+          <div style="display:flex; align-items:center; gap:10px; font-size:14px; color:var(--text2);">
+            <span style="color:var(--green); font-weight:700; font-size:16px;">✓</span>
+            Opciones de comodato disponibles — $0 inversión inicial
+          </div>
+        </div>
+      </div>
+
+      <div class="roi-calc animate delay-2">
+        <div class="roi-calc-title">Calcula tu exposición de riesgo</div>
+        <div class="calc-field">
+          <label class="calc-label" for="units">Número de unidades en tu flota</label>
+          <input class="calc-input" type="number" id="units" min="1" value="10" placeholder="ej. 10" oninput="calcROI()" />
+        </div>
+        <div class="calc-field">
+          <label class="calc-label" for="value">Valor promedio por unidad cargada (MXN $)</label>
+          <input class="calc-input" type="number" id="value" value="800000" placeholder="ej. 800000" oninput="calcROI()" />
+        </div>
+        <div class="calc-field">
+          <label class="calc-label" for="incidents">Incidentes estimados por año (sin protección)</label>
+          <input class="calc-input" type="number" id="incidents" min="0" value="2" step="0.5" placeholder="ej. 2" oninput="calcROI()" />
+        </div>
+        <div class="calc-result" id="calcResult">
+          <div class="calc-result-label">Pérdida anual estimada sin protección</div>
+          <div class="calc-result-num" id="resultNum">$1,600,000</div>
+          <div class="calc-result-sub" id="resultSub">vs. protección Logitrack desde ~$3,500/unidad/mes</div>
+        </div>
+        <div style="margin-top:var(--s4);">
+          <a class="btn btn-primary" href="#demo" style="width:100%; justify-content:center; height:52px; font-size:16px;">
+            Ver cotización personalizada
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section class="faq">
+  <div class="wrap">
+    <div class="faq-header animate">
+      <div class="tag section-tag">Preguntas frecuentes</div>
+      <h2 class="section-h2">Resolvemos tus dudas</h2>
+    </div>
+    <div class="faq-grid">
+
+      <div class="faq-item open">
+        <div class="faq-q" onclick="toggleFAQ(this)">
+          ¿Funciona el sistema bajo ataque de jammer?
+          <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M4 6l4 4 4-4"/></svg>
+        </div>
+        <div class="faq-a">
+          <strong>Sí, el sistema continúa bloqueando incluso bajo ataque de inhibidor de señal.</strong> Nuestra tecnología anti-jammer mantiene los bloqueos físicos activos aunque se interrumpa la señal GPS o celular. Si el jammer es demasiado potente, el sistema envía alertas de actividad sospechosa al C5 y al operador mientras mantiene los mecanismos de seguridad activados.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFAQ(this)">
+          ¿Cuánto tiempo tarda la instalación?
+          <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M4 6l4 4 4-4"/></svg>
+        </div>
+        <div class="faq-a">
+          <strong>La instalación básica toma aproximadamente 1 hora.</strong> Los sistemas avanzados (Nivel 5 y 6, con bloqueos múltiples, quinta rueda y frenos neumáticos) requieren entre 5 y 6 horas. Contamos con técnicos certificados en todo México y el tiempo de entrega estándar del equipo es de 15 días hábiles.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFAQ(this)">
+          ¿Cuál es la cobertura geográfica?
+          <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M4 6l4 4 4-4"/></svg>
+        </div>
+        <div class="faq-a">
+          <strong>Cobertura en México, Estados Unidos, Canadá y más de 150 países.</strong> Usamos SIM multioperador (Telcel, AT&T, Movistar) para garantizar conectividad en zonas rurales y fronteras. El sistema tiene respaldo 2G para señal limitada y nuestra plataforma garantiza 99%+ de uptime.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFAQ(this)">
+          ¿Tienen opciones de financiamiento?
+          <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M4 6l4 4 4-4"/></svg>
+        </div>
+        <div class="faq-a">
+          <strong>Sí, ofrecemos modalidades de venta directa y comodato (arrendamiento).</strong> El comodato te permite tener el sistema sin inversión inicial, pagando una renta mensual que incluye equipo, mantenimiento y garantía durante toda la vigencia del contrato. Ideal para flotas que prefieren convertir capex en opex.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFAQ(this)">
+          ¿Qué garantía tienen los equipos?
+          <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M4 6l4 4 4-4"/></svg>
+        </div>
+        <div class="faq-a">
+          <strong>12 meses de garantía en compra directa.</strong> Los equipos en comodato están cubiertos durante toda la duración del contrato. Logitrack manufactura sus propios equipos GPS y sistemas de seguridad, lo que nos permite controlar calidad, tiempos de reparación y compatibilidad al 100%.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFAQ(this)">
+          ¿Funciona si no hay señal GPS ni celular?
+          <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M4 6l4 4 4-4"/></svg>
+        </div>
+        <div class="faq-a">
+          <strong>Sí, el sistema opera sin señal GPS ni celular mediante llaves locales y códigos dinámicos.</strong> Esto significa que incluso en zonas sin cobertura o bajo ataque de jammer, los bloqueos físicos permanecen activos. La rehabilitación del vehículo requiere un código dinámico generado por nuestra plataforma, evitando desbloqueos no autorizados.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFAQ(this)">
+          ¿Tienen período de prueba o demo?
+          <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M4 6l4 4 4-4"/></svg>
+        </div>
+        <div class="faq-a">
+          <strong>Sí, ofrecemos períodos de demo de 30 días.</strong> El costo varía según la configuración del sistema y el número de unidades. Contáctanos para diseñar un programa de prueba piloto que se ajuste a tu operación antes de comprometerte con toda tu flota.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFAQ(this)">
+          ¿Se integra con mi sistema actual de gestión de flota?
+          <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M4 6l4 4 4-4"/></svg>
+        </div>
+        <div class="faq-a">
+          <strong>Sí, Logitrack ofrece Web Services y API de integración.</strong> También disponemos de cuentas espejo para que múltiples usuarios accedan a la plataforma con distintos niveles de acceso. Para necesidades de integración específicas, nuestro equipo técnico evalúa cada caso.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA FINAL ═══ -->
+<section class="cta-section" id="contacto">
+  <div class="wrap">
+    <div class="cta-inner animate">
+      <div class="tag" style="margin-bottom:24px;">Empieza hoy</div>
+      <h2 class="cta-title">¿Cuándo fue el último robo<br/>a tu flota?</h2>
+      <p class="cta-sub">No esperes al próximo. Más de 500 empresas en México ya protegen su flota con Logitrack. Tu demo es gratuita y sin compromiso.</p>
+
+      <form class="cta-form" onsubmit="handleSubmit(event)">
+        <input class="cta-input" type="text" placeholder="Tu nombre" required />
+        <input class="cta-input" type="tel" placeholder="WhatsApp / teléfono" required />
+        <input class="cta-input" type="number" placeholder="# de unidades" required style="max-width:160px;" />
+        <button type="submit" class="btn-cta-submit">Solicitar Demo Gratis →</button>
+      </form>
+
+      <p class="cta-note">Sin compromiso · Respuesta en 24h · También puedes escribirnos a <a href="mailto:ventas@logitrack.com.mx">ventas@logitrack.com.mx</a></p>
+
+      <div class="cta-divider">— o contáctanos directo por WhatsApp —</div>
+
+      <a class="cta-whatsapp" href="https://wa.me/528184660360?text=Hola%2C%20me%20interesa%20una%20demo%20de%20Logitrack%20para%20mi%20flota." target="_blank">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Escribir a WhatsApp: +52 81 8466 0360
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">Logi<span>track</span></div>
+        <p class="footer-desc">Logitrack es una empresa mexicana especializada en sistemas de seguridad GPS y anti-robo para flotas de transporte de carga, con tecnología anti-jammer propia y niveles de protección del 3 al 6.</p>
+        <div style="margin-top:16px; font-size:12px; color:var(--text3);">
+          📧 ventas@logitrack.com.mx<br/>
+          📱 +52 81 8466 0360
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Soluciones</h4>
+        <div class="footer-links">
+          <a href="#">Transporte de carga</a>
+          <a href="#">Protección de mercancías</a>
+          <a href="#">Diagnóstico remoto</a>
+          <a href="#">Cámaras inteligentes</a>
+          <a href="#">Rastreo satelital</a>
+          <a href="#">Consultoría</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <div class="footer-links">
+          <a href="#">Inicio</a>
+          <a href="#">Nosotros</a>
+          <a href="#">Alianzas</a>
+          <a href="#">Blog</a>
+          <a href="#">Contacto</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <div class="footer-links">
+          <a href="#">Aviso de privacidad</a>
+          <a href="#">Términos de servicio</a>
+          <a href="#">Política de cookies</a>
+        </div>
+        <h4 style="margin-top:24px;">Certificaciones</h4>
+        <div style="font-size:12px; color:var(--text3); line-height:1.8; margin-top:8px;">
+          SSP · Gobierno de NL<br/>
+          Círculo Logístico
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Logitrack. Todos los derechos reservados. Monterrey, Nuevo León, México.</div>
+      <div class="footer-socials">
+        <a class="footer-social" href="#" title="LinkedIn">in</a>
+        <a class="footer-social" href="#" title="YouTube">▶</a>
+        <a class="footer-social" href="#" title="Instagram">◻</a>
+        <a class="footer-social" href="#" title="Facebook">f</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ─── JS ─── -->
+<script>
+  // ROI Calculator
+  function calcROI() {
+    const units = parseFloat(document.getElementById('units').value) || 0;
+    const value = parseFloat(document.getElementById('value').value) || 0;
+    const incidents = parseFloat(document.getElementById('incidents').value) || 0;
+    const loss = units * value * (incidents / Math.max(units, 1));
+    const totalLoss = incidents * value;
+    const fmt = n => '$' + Math.round(n).toLocaleString('es-MX');
+    document.getElementById('resultNum').textContent = fmt(totalLoss);
+    const monthly = units * 3500;
+    document.getElementById('resultSub').textContent = `vs. protección Logitrack estimada ~${fmt(monthly)}/mes para tu flota`;
+  }
+  calcROI();
+
+  // FAQ toggle
+  function toggleFAQ(el) {
+    const item = el.parentElement;
+    item.classList.toggle('open');
+  }
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button');
+    btn.textContent = '✓ ¡Recibido! Te contactamos en 24h';
+    btn.style.background = 'linear-gradient(180deg, #4EEAA8, #00C27A)';
+    btn.disabled = true;
+  }
+
+  // Scroll animations with Intersection Observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.animationPlayState = 'running';
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.animate').forEach(el => {
+    el.style.animationPlayState = 'paused';
+    observer.observe(el);
+  });
+
+  // FAQ SVG chevron path
+  document.querySelectorAll('.faq-chevron path').forEach(p => p.setAttribute('stroke', 'currentColor'));
+  document.querySelectorAll('.faq-chevron').forEach(svg => {
+    svg.innerHTML = '<polyline points="4 6 8 10 12 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>';
+  });
+</script>
+
+</body>
+</html>
