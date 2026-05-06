@@ -6,7 +6,8 @@
   <title>Seguridad GPS Anti-Robo para Flotas de Carga en México | Logitrack</title>
   <meta name="description" content="Protege tu flota con el sistema anti-robo más avanzado de México. Tecnología anti-jammer, bloqueo automático con IA, cobertura 150+ países. 99% de efectividad. Solicita tu demo gratis." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@500;600;700;800&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet" />
 
   <!-- JSON-LD Schema -->
   <script type="application/ld+json">
@@ -84,26 +85,27 @@
   <style>
     /* ─── DESIGN TOKENS ─── */
     :root {
-      /* Colors */
-      --bg:       #060B18;
-      --surface1: #0D1426;
-      --surface2: #121E35;
-      --surface3: #1A2845;
+      /* ── Brand color: #1844FF ── */
+      --bg:       #05091A;
+      --surface1: #0A1020;
+      --surface2: #0F1830;
+      --surface3: #162040;
       --border:   rgba(255,255,255,0.07);
-      --border2:  rgba(255,255,255,0.12);
+      --border2:  rgba(255,255,255,0.13);
 
-      --blue:     #1A6BFF;
-      --blue-d:   #1254CC;
-      --blue-l:   #4D93FF;
+      --blue:     #1844FF;
+      --blue-d:   #1233CC;
+      --blue-l:   #5572FF;
+      --blue-xs:  #8EA4FF;
       --amber:    #FF6200;
       --amber-d:  #CC4E00;
       --amber-l:  #FF8540;
       --green:    #00C27A;
       --red:      #FF3B30;
 
-      --text:     #EDF0F7;
-      --text2:    #8A97B5;
-      --text3:    #56637F;
+      --text:     #EDF0F8;
+      --text2:    #8895B8;
+      --text3:    #505E80;
 
       /* Spacing (8pt grid) */
       --s1: 4px;  --s2: 8px;  --s3: 12px; --s4: 16px;
@@ -113,9 +115,9 @@
       --r1: 6px;  --r2: 10px; --r3: 16px; --r4: 24px; --r5: 100px;
 
       /* Shadows */
-      --shadow-blue: 0 0 32px rgba(26,107,255,0.25);
+      --shadow-blue:  0 0 40px rgba(24,68,255,0.3);
       --shadow-amber: 0 0 24px rgba(255,98,0,0.35);
-      --shadow-card: 0 8px 32px rgba(0,0,0,0.4);
+      --shadow-card:  0 8px 32px rgba(0,0,0,0.45);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -124,7 +126,7 @@
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'Inter', system-ui, sans-serif;
+      font-family: 'Montserrat', system-ui, sans-serif;
       font-size: 16px;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
@@ -132,9 +134,16 @@
     }
 
     h1, h2, h3, h4, h5 {
-      font-family: 'Space Grotesk', system-ui, sans-serif;
+      font-family: 'Barlow', system-ui, sans-serif;
       letter-spacing: -0.02em;
       line-height: 1.1;
+    }
+
+    /* Barlow Condensed for impact headings */
+    h1.hero-title, .cta-title, .level-title, .section-h2, .how-title,
+    .metrics-title, .roi-title {
+      font-family: 'Barlow Condensed', system-ui, sans-serif;
+      letter-spacing: -0.01em;
     }
 
     img { display: block; max-width: 100%; }
@@ -149,8 +158,8 @@
     .tag {
       display: inline-flex; align-items: center; gap: 6px;
       padding: 5px 14px;
-      background: rgba(26,107,255,0.1);
-      border: 1px solid rgba(26,107,255,0.25);
+      background: rgba(24,68,255,0.1);
+      border: 1px solid rgba(24,68,255,0.25);
       border-radius: var(--r5);
       font-size: 12px; font-weight: 600; letter-spacing: 0.07em;
       text-transform: uppercase; color: var(--blue-l);
@@ -166,7 +175,9 @@
       display: inline-flex; align-items: center; gap: 8px;
       height: 48px; padding: 0 28px;
       border: none; border-radius: var(--r2);
-      font-size: 15px; font-weight: 600;
+      font-family: 'Barlow', system-ui, sans-serif;
+      font-size: 15px; font-weight: 700;
+      letter-spacing: 0.01em;
       transition: all 0.18s ease;
       position: relative; overflow: hidden;
     }
@@ -235,12 +246,16 @@
       display: flex; align-items: center; gap: var(--s6);
     }
     .logo {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 20px; font-weight: 800;
-      letter-spacing: -0.03em;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 22px; font-weight: 800;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
       color: var(--text);
       flex-shrink: 0;
+      display: flex; align-items: center;
     }
+    /* SVG logo container — replace text when SVG is provided */
+    .logo svg { height: 32px; width: auto; }
     .logo span { color: var(--blue); }
     .nav-links {
       display: flex; align-items: center; gap: var(--s5);
@@ -279,15 +294,15 @@
     .hero-bg {
       position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse 800px 600px at 60% 40%, rgba(26,107,255,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 800px 600px at 60% 40%, rgba(24,68,255,0.08) 0%, transparent 70%),
         radial-gradient(ellipse 600px 400px at 10% 80%, rgba(255,98,0,0.05) 0%, transparent 60%),
-        linear-gradient(180deg, #060B18 0%, #08102B 50%, #060B18 100%);
+        linear-gradient(180deg, #05091A 0%, #090F25 50%, #05091A 100%);
     }
     .hero-grid {
       position: absolute; inset: 0;
       background-image:
-        linear-gradient(rgba(26,107,255,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(26,107,255,0.04) 1px, transparent 1px);
+        linear-gradient(rgba(24,68,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(24,68,255,0.04) 1px, transparent 1px);
       background-size: 64px 64px;
       mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
     }
@@ -331,7 +346,7 @@
     }
     h1.hero-title em {
       font-style: normal;
-      background: linear-gradient(135deg, #4D93FF 0%, #1A6BFF 50%, #A855F7 100%);
+      background: linear-gradient(135deg, #5572FF 0%, #1844FF 50%, #A855F7 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -365,7 +380,7 @@
     }
     .hero-trust-item { text-align: center; }
     .hero-trust-num {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Barlow', sans-serif;
       font-size: 24px; font-weight: 800; letter-spacing: -0.03em;
       color: var(--text);
     }
@@ -427,7 +442,7 @@
       height: 120px;
       background:
         radial-gradient(circle at 40% 60%, rgba(0,194,122,0.15) 0%, transparent 40%),
-        radial-gradient(circle at 70% 30%, rgba(26,107,255,0.1) 0%, transparent 35%),
+        radial-gradient(circle at 70% 30%, rgba(24,68,255,0.1) 0%, transparent 35%),
         var(--surface1);
       border-radius: var(--r2);
       border: 1px solid var(--border);
@@ -439,8 +454,8 @@
       content: '';
       position: absolute; inset: 0;
       background-image:
-        linear-gradient(rgba(26,107,255,0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(26,107,255,0.06) 1px, transparent 1px);
+        linear-gradient(rgba(24,68,255,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(24,68,255,0.06) 1px, transparent 1px);
       background-size: 20px 20px;
     }
     .map-ping {
@@ -518,7 +533,7 @@
       flex-wrap: wrap; gap: var(--s7);
     }
     .partner-logo {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Barlow', sans-serif;
       font-size: 18px; font-weight: 700;
       color: var(--text3);
       letter-spacing: -0.01em;
@@ -558,10 +573,10 @@
       content: '';
       position: absolute; top: 0; left: 50%; transform: translateX(-50%);
       width: 60%; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(26,107,255,0.4), transparent);
+      background: linear-gradient(90deg, transparent, rgba(24,68,255,0.4), transparent);
     }
     .metric-big {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Barlow', sans-serif;
       font-size: 52px; font-weight: 800; letter-spacing: -0.04em;
       line-height: 1; margin-bottom: 6px;
     }
@@ -587,7 +602,7 @@
     }
     .testimonial-quote::before {
       content: '"';
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Barlow', sans-serif;
       font-size: 40px; line-height: 1;
       color: var(--blue);
       display: block; margin-bottom: 8px;
@@ -629,7 +644,7 @@
       left: 50%; top: 20%;
       transform: translateX(-50%);
       width: 800px; height: 400px;
-      background: radial-gradient(ellipse, rgba(26,107,255,0.06) 0%, transparent 70%);
+      background: radial-gradient(ellipse, rgba(24,68,255,0.06) 0%, transparent 70%);
     }
     .how-header { text-align: center; margin-bottom: var(--s7); position: relative; }
     .how-title { font-size: clamp(28px, 3.5vw, 44px); font-weight: 800; margin-bottom: var(--s3); }
@@ -643,7 +658,7 @@
       content: '';
       position: absolute; top: 48px; left: calc(16.67% + 32px); right: calc(16.67% + 32px);
       height: 2px;
-      background: linear-gradient(90deg, var(--blue) 0%, rgba(26,107,255,0.3) 50%, var(--blue) 100%);
+      background: linear-gradient(90deg, var(--blue) 0%, rgba(24,68,255,0.3) 50%, var(--blue) 100%);
       z-index: 0;
     }
     .how-step {
@@ -667,9 +682,9 @@
       box-shadow: 0 0 32px rgba(255,59,48,0.1);
     }
     .step-icon-wrap.s2 {
-      background: linear-gradient(135deg, rgba(26,107,255,0.15), rgba(26,107,255,0.05));
-      border: 1px solid rgba(26,107,255,0.25);
-      box-shadow: 0 0 32px rgba(26,107,255,0.12);
+      background: linear-gradient(135deg, rgba(24,68,255,0.15), rgba(24,68,255,0.05));
+      border: 1px solid rgba(24,68,255,0.25);
+      box-shadow: 0 0 32px rgba(24,68,255,0.12);
     }
     .step-icon-wrap.s3 {
       background: linear-gradient(135deg, rgba(0,194,122,0.15), rgba(0,194,122,0.05));
@@ -691,8 +706,8 @@
     .step-badge {
       display: inline-block; margin-top: 12px;
       padding: 4px 12px;
-      background: rgba(26,107,255,0.08);
-      border: 1px solid rgba(26,107,255,0.2);
+      background: rgba(24,68,255,0.08);
+      border: 1px solid rgba(24,68,255,0.2);
       border-radius: var(--r5);
       font-size: 11px; font-weight: 600; color: var(--blue-l);
       letter-spacing: 0.04em;
@@ -729,8 +744,8 @@
       transition: opacity 0.2s;
     }
     .solution-card.c1::before { background: linear-gradient(90deg, #FF3B30, #FF6B00); }
-    .solution-card.c2::before { background: linear-gradient(90deg, #1A6BFF, #A855F7); }
-    .solution-card.c3::before { background: linear-gradient(90deg, #00C27A, #1A6BFF); }
+    .solution-card.c2::before { background: linear-gradient(90deg, #1844FF, #A855F7); }
+    .solution-card.c3::before { background: linear-gradient(90deg, #00C27A, #1844FF); }
     .solution-card.c4::before { background: linear-gradient(90deg, #FFB800, #FF6200); }
     .solution-card:hover { border-color: var(--border2); transform: translateY(-3px); box-shadow: var(--shadow-card); }
     .solution-card:hover::before { opacity: 1; }
@@ -847,7 +862,7 @@
       transition: border-color 0.15s;
       -webkit-appearance: none;
     }
-    .calc-input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(26,107,255,0.12); }
+    .calc-input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(24,68,255,0.12); }
     .calc-result {
       margin-top: var(--s5);
       padding: var(--s5);
@@ -857,7 +872,7 @@
     }
     .calc-result-label { font-size: 12px; color: var(--green); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
     .calc-result-num {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Barlow', sans-serif;
       font-size: 36px; font-weight: 800; color: var(--text);
       letter-spacing: -0.03em;
     }
@@ -905,7 +920,7 @@
     /* ─── CTA SECTION ─── */
     .cta-section {
       padding: var(--s9) 0;
-      background: linear-gradient(135deg, #0A0F1E 0%, #0D1633 50%, #0A0F1E 100%);
+      background: linear-gradient(135deg, #05091A 0%, #0D1840 50%, #05091A 100%);
       border-top: 1px solid var(--border);
       position: relative; overflow: hidden;
     }
@@ -913,7 +928,7 @@
       content: '';
       position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
       width: 800px; height: 400px;
-      background: radial-gradient(ellipse, rgba(26,107,255,0.1) 0%, transparent 70%);
+      background: radial-gradient(ellipse, rgba(24,68,255,0.1) 0%, transparent 70%);
     }
     .cta-inner { text-align: center; position: relative; }
     .cta-title { font-size: clamp(32px, 4vw, 56px); font-weight: 800; margin-bottom: var(--s4); }
@@ -934,7 +949,7 @@
       font-family: inherit; outline: none;
       transition: border-color 0.15s;
     }
-    .cta-input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(26,107,255,0.12); }
+    .cta-input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(24,68,255,0.12); }
     .cta-input::placeholder { color: var(--text3); }
     .btn-cta-submit {
       height: 52px; padding: 0 var(--s6);
@@ -976,7 +991,7 @@
     }
     .footer-brand { }
     .footer-logo {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Barlow', sans-serif;
       font-size: 22px; font-weight: 800;
       letter-spacing: -0.03em; margin-bottom: var(--s3);
     }
@@ -1029,7 +1044,10 @@
 <!-- ═══ NAV ═══ -->
 <nav>
   <div class="nav-inner">
-    <div class="logo">Logi<span>track</span></div>
+    <!-- LOGO: reemplaza el contenido con tu SVG cuando lo tengas -->
+    <div class="logo" id="nav-logo">
+      Logi<span>track</span>
+    </div>
     <div class="nav-links">
       <a href="#soluciones">Soluciones</a>
       <a href="#como-funciona">Cómo funciona</a>
@@ -1594,7 +1612,8 @@
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="footer-logo">Logi<span>track</span></div>
+        <!-- LOGO FOOTER: reemplaza con el mismo SVG -->
+        <div class="footer-logo" id="footer-logo">Logi<span>track</span></div>
         <p class="footer-desc">Logitrack es una empresa mexicana especializada en sistemas de seguridad GPS y anti-robo para flotas de transporte de carga, con tecnología anti-jammer propia y niveles de protección del 3 al 6.</p>
         <div style="margin-top:16px; font-size:12px; color:var(--text3);">
           📧 ventas@logitrack.com.mx<br/>
